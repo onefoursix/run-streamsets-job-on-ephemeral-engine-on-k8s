@@ -49,7 +49,7 @@ This example assumes the use of [WebSocket Tunneling](https://docs.streamsets.co
 
 <img src="images/pipeline.png" alt="pipeline" width="700"/>
 
-- Select an existing or create a new StreamSets Kubernetes Deployment to serve as a template. Make sure the deployment includes the stage libraries necessary to run the pipeline, in my case, the JDBC and Snowflake stage libraries. Typically, deployment's "desired instances" should be set to one, with autoscaling disabled, in order to deploy a single engine, and the engine's CPU and memory sizing should reflect the need to run only a single pipeline at a time for use with this pattern.
+- Select an existing or create a new StreamSets Kubernetes Deployment to serve as a template. Make sure the deployment includes the stage libraries necessary to run the pipeline, in my case, the JDBC and Snowflake stage libraries. Typically, the deployment's "desired instances" should be set to one, with autoscaling disabled, in order to deploy a single engine, and the engine's CPU and memory sizing should reflect the need to run only a single pipeline at a time for use with this pattern.
 
 In my example, I'll use a Deployment named <code>deployment-template</code>:
 
@@ -69,8 +69,24 @@ For example, I'll specify the ID of my template deployment, the name of the new 
  ephemeral-label-1</code>
 
 
+As the script runs you should see a new deployment enter the Activating state:
 
-You should see output like this:
+<img src="images/deployment-activating.png" alt="deployment-activating" width="700"/>
+
+After a minute or two it should transition to an Active state:
+
+<img src="images/deployment-active.png" alt="deployment-active" width="700"/>
+
+Once the deployment is Active, you should see a new Engine has registered with Control Hub:
+
+<img src="images/engine.png" alt="engine" width="700"/>
+
+And then the Job should start:
+
+<img src="images/job.png" alt="job" width="700"/>
+
+
+Here is the command-line output from running the script:
 
 ```
 % ./run-streamsets-job-on-ephemeral-engine-on-k8s.sh \
