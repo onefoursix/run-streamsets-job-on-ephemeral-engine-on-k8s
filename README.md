@@ -68,7 +68,7 @@ For example, I'll specify the ID of my template deployment, the name of the new 
 
 You should see output like this:
 
-``
+```
 % ./run-streamsets-job-on-ephemeral-engine-on-k8s.sh 19dc63bb-5911-4e9e-b71c-8a6d6e29a9c7:8030c2e9-1a39-11ec-a5fe-97c8d4369386 ephemeral-1 9caf20bc-dd88-4665-8ef2-10140e7a5417:8030c2e9-1a39-11ec-a5fe-97c8d4369386 ephemeral-label-1
 2024-09-17 11:19:47 ----
 2024-09-17 11:19:47 Run StreamSets Job on Ephemeral Kubernetes Deployment
