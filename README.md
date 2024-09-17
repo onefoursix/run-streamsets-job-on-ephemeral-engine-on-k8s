@@ -60,6 +60,11 @@ In my example, I'll use a Deployment named <code>deployment-template</code>:
 
 ```$ ./run-streamsets-job-on-ephemeral-engine-on-k8s.sh <deployment_to_clone_id> <new_deployment_name> <job_id> <engine_label>"```
 
+For example, I'll specify the ID of my template deployment, the name of the new deployment I want to create ("ephemeral-1"), the JOB ID, and a globally unique engine label ("ephemeral-label") which will bind the Job to the engine:
+
+```$./run-streamsets-job-on-ephemeral-engine-on-k8s.sh 6895a7c5-2fad-465c-b132-d0a3adac6e47:8030c2e9-1a39-11ec-a5fe-97c8d4369386 ephemeral-1 1aee8d54-e2cb-4edd-9f6e-f7dc95f370be:8030c2e9-1a39-11ec-a5fe-97c8d4369386 label-1"
+```
+
 
 
 ```
