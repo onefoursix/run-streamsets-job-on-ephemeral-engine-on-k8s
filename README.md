@@ -58,12 +58,46 @@ In my example, I'll use a Deployment named <code>deployment-template</code>:
 
 - Execute the project's top level shell script using a command of the form:
 
-<code>$ ./run-streamsets-job-on-ephemeral-engine-on-k8s.sh <deployment_to_clone_id> <new_deployment_name> <job_id> <engine_label>"</code>
+<code>$ ./run-streamsets-job-on-ephemeral-engine-on-k8s.sh <deployment_to_clone_id> <new_deployment_name> <job_id> <engine_label></code>
 
 For example, I'll specify the ID of my template deployment, the name of the new deployment I want to create ("ephemeral-1"), the Job ID, and a globally unique engine label ("ephemeral-label-1") which will bind the Job to the engine:
 
-<code>$ ./run-streamsets-job-on-ephemeral-engine-on-k8s.sh 6895a7c5-2fad-465c-b132-d0a3adac6e47:8030c2e9-1a39-11ec-a5fe-97c8d4369386 ephemeral-1 1aee8d54-e2cb-4edd-9f6e-f7dc95f370be:8030c2e9-1a39-11ec-a5fe-97c8d4369386 ephemeral-label-1"</code>
+<code>$ ./run-streamsets-job-on-ephemeral-engine-on-k8s.sh 19dc63bb-5911-4e9e-b71c-8a6d6e29a9c7:8030c2e9-1a39-11ec-a5fe-97c8d4369386 ephemeral-1 9caf20bc-dd88-4665-8ef2-10140e7a5417:8030c2e9-1a39-11ec-a5fe-97c8d4369386 ephemeral-label-1</code>
 
 
 
 You should see output like this:
+
+``
+% ./run-streamsets-job-on-ephemeral-engine-on-k8s.sh 19dc63bb-5911-4e9e-b71c-8a6d6e29a9c7:8030c2e9-1a39-11ec-a5fe-97c8d4369386 ephemeral-1 9caf20bc-dd88-4665-8ef2-10140e7a5417:8030c2e9-1a39-11ec-a5fe-97c8d4369386 ephemeral-label-1
+2024-09-17 11:19:47 ----
+2024-09-17 11:19:47 Run StreamSets Job on Ephemeral Kubernetes Deployment
+2024-09-17 11:19:47 ----
+2024-09-17 11:19:47 Source Deployment's ID: 19dc63bb-5911-4e9e-b71c-8a6d6e29a9c7:8030c2e9-1a39-11ec-a5fe-97c8d4369386
+2024-09-17 11:19:47 New Deployment's name: ephemeral-1
+2024-09-17 11:19:47 Job ID: 9caf20bc-dd88-4665-8ef2-10140e7a5417:8030c2e9-1a39-11ec-a5fe-97c8d4369386
+2024-09-17 11:19:47 Engine Label: ephemeral-label-1
+2024-09-17 11:19:47 ----
+2024-09-17 11:19:47 Connecting to Control Hub
+2024-09-17 11:19:48 Found Job 'SQLServer to Snowflake'
+2024-09-17 11:19:48 Found source Deployment 'deployment-template'
+2024-09-17 11:19:48 Cloning Deployment
+2024-09-17 11:19:48 Setting the new Deployment's engine label
+2024-09-17 11:19:49 Starting Deployment
+2024-09-17 11:20:52 Deployment is ACTIVE
+2024-09-17 11:20:52 Engine is online
+2024-09-17 11:20:52 ----
+2024-09-17 11:20:52 Setting the Job's engine label
+2024-09-17 11:20:52 Starting the job
+2024-09-17 11:21:05 Job status is ACTIVE
+2024-09-17 11:21:05 Waiting for Job to complete...
+2024-09-17 11:21:05 Waiting for Job to complete...
+2024-09-17 11:21:15 Waiting for Job to complete...
+2024-09-17 11:21:25 Waiting for Job to complete...
+2024-09-17 11:21:35 Waiting for Job to complete...
+2024-09-17 11:21:46 Waiting for Job to complete...
+2024-09-17 11:21:56 Job completed successfully
+2024-09-17 11:21:56 Job status is INACTIVE
+2024-09-17 11:21:56 ----
+2024-09-17 11:21:56 Stopping engine and deleting Deployment
+```

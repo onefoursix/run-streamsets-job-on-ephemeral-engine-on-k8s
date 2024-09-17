@@ -77,7 +77,7 @@ job = None
 for j in sch.jobs:
     if j.job_id == job_id:
         job = j
-        print_message('Found Job')
+        print_message('Found Job \'{}\''.format(j.job_name))
         break
 if job is None:
     print_message('Error: Job was not found')
@@ -88,7 +88,7 @@ deployment_to_be_cloned = None
 for d in sch.deployments:
     if d.deployment_id == deployment_to_clone_id:
         deployment_to_be_cloned = d
-        print_message('Found source Deployment')
+        print_message('Found source Deployment \'{}\''.format(d.deployment_name))
         break
 if deployment_to_be_cloned is None:
     print_message('Error: Source Deployment to be cloned was not found')
@@ -96,6 +96,7 @@ if deployment_to_be_cloned is None:
 
 # Clone the deployment
 print_message('Cloning Deployment')
+print_message('Setting the new Deployment\'s engine label')
 deployment = sch.clone_deployment(deployment_to_be_cloned, name=new_deployment_name, engine_labels=[engine_label])
 
 # Retrieve the new deployment from Control Hub
@@ -108,7 +109,7 @@ sch.start_deployment(deployment)
 # Make sure the deployment is Active
 deployment = sch.deployments.get(deployment_id=deployment.deployment_id)
 if deployment.state == 'ACTIVE':
-    print_message('Deployment is ACTIVE!')
+    print_message('Deployment is ACTIVE')
 else:
     print_message('Error: Deployment is not in an ACTIVE state. Deployment state is {}'.format(deployment.state))
     print_message('Inspect the failed Deployment in the Control Hub UI to diagnose the issue.')
@@ -120,7 +121,7 @@ engine_is_online = False
 while engine_wait_time_seconds < max_engine_wait_time_seconds:
     for engine in sch.data_collectors:
         if engine_label in engine.reported_labels and engine.responding:
-            print_message('Engine is online!')
+            print_message('Engine is online')
             engine_is_online = True
             break
     if engine_is_online:
@@ -135,11 +136,13 @@ if not engine_is_online:
 
 
 # Set the Job's engine label
+print_message('----')
 print_message('Setting the Job\'s engine label')
 job.data_collector_labels = [engine_label]
+sch.update_job(job)
 
 # Start the Job
-print_message('----')
+
 print_message('Starting the job')
 sch.start_job(job)
 
@@ -156,7 +159,7 @@ while job.status.status != 'ACTIVE':
     time.sleep(update_frequency_seconds)
     wait_seconds += update_frequency_seconds
 
-print_message('Job status is ACTIVE!')
+print_message('Job status is ACTIVE')
 
 # Wait for Job to complete or to timeout
 print_message('Waiting for Job to complete...')
