@@ -85,6 +85,16 @@ And then the Job should start:
 
 <img src="images/job.png" alt="job" width="700"/>
 
+When the Job completes, the engine and the deployment will be deleted.
+
+Note that even though the engine and deployment are deleted, the Job's history still has full metrics of the run:
+
+<img src="images/job.png" alt="job" width="700"/>
+
+<img src="images/job.png" alt="job" width="700"/>
+
+
+
 
 Here is the command-line output from running the script:
 
