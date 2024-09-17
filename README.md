@@ -40,7 +40,8 @@ This example assumes the use of [WebSocket Tunneling](https://docs.streamsets.co
 
 - Create a file named <code>sdk-env.sh</code> with your API credentials in the project's [private](private) directory as quoted strings with no spaces, like this:
 
-	```export CRED_ID="esdgew……193d2"
+	```
+	export CRED_ID="esdgew……193d2"
 	export CRED_TOKEN="eyJ0…………J9."
 	```
 
