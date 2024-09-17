@@ -36,8 +36,8 @@ update_frequency_seconds = 10
 if len(sys.argv) != 5:
     print('Error: Wrong number of arguments')
     print(
-        'Usage: $ python3 ./run-streamsets-job-on-ephemeral-k8s-deployment.py <deployment_to_clone_id> <new_deployment_name> <job_id> <engine_label>')
-    print('Usage Example: $ python3 ./run-streamsets-job-on-ephemeral-k8s-deployment.sh '
+        'Usage: $ python3 ./run_streamsets_job_on_ephemeral_engine_on_k8s.py <deployment_to_clone_id> <new_deployment_name> <job_id> <engine_label>')
+    print('Usage Example: $ python3 ./run_streamsets_job_on_ephemeral_engine_on_k8s.py '
           '6895a7c5-2fad-465c-b132-d0a3adac6e47:8030c2e9-1a39-11ec-a5fe-97c8d4369386 '
           'ephemeral-1 '
           '1aee8d54-e2cb-4edd-9f6e-f7dc95f370be:8030c2e9-1a39-11ec-a5fe-97c8d4369386 '
