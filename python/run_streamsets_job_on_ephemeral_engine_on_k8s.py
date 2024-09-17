@@ -1,17 +1,37 @@
 #!/usr/bin/env python
 
 """
-blah blah
+This script provides an example of how to use the StreamSets Platform SDK to automate the process of running a
+StreamSets Job on a "just-in-time" engine deployment on Kubernetes. This deployment pattern can help minimize the
+expense of long-running and under-utilized StreamSets engines.
+
+The script performs the following steps:
+
+- Clones a StreamSets Kubernetes Deployment from a pre-existing template and assigns a unique engine label to the new deployment.
+
+- Starts the deployment which causes an engine to be deployed on Kubernetes with the unique label.
+
+- Updates a Job with the unique engine label.
+
+- Starts the Job, which will run on the just deployed engine.
+
+- Waits for the Job to complete.
+
+- Tears down the engine and deletes the Deployment.
+
+See the projects README.md for additional information
 
 Prerequisites:
- - Python 3.9+
 
- - StreamSets DataOps Platform SDK for Python v6.1+
-   See: https://docs.streamsets.com/platform-sdk/latest/learn/installation.html
+- A Python 3.9+ environment with the StreamSets Platform SDK v6.0+ module installed.
+  This example was tested using Python 3.11.5 and StreamSets SDK v6.4.
 
- - StreamSets Platform API Credentials for a user with Organization Administrator role
+- StreamSets API Credentials
 
- - An active StreamSets Kubernetes Environment with an online Kubernetes Agent
+- An active StreamSets Kubernetes Environment with an online Kubernetes Agent.
+
+- A StreamSets Kubernetes Deployment that this project will clone at runtime.
+
 """
 
 import datetime
@@ -142,7 +162,6 @@ job.data_collector_labels = [engine_label]
 sch.update_job(job)
 
 # Start the Job
-
 print_message('Starting the job')
 sch.start_job(job)
 
@@ -152,13 +171,11 @@ wait_seconds = 0
 while job.status.status != 'ACTIVE':
     job.refresh()
     print_message('Waiting for Job to become ACTIVE...')
-
     if wait_seconds > max_wait_seconds_for_job_to_become_active:
-        sys.exit('Error: Timeout waiting for Job to become ACTIVE')
-
+        print_message('Error: Timeout waiting for Job to become ACTIVE')
+        sys.exit(1)
     time.sleep(update_frequency_seconds)
     wait_seconds += update_frequency_seconds
-
 print_message('Job status is ACTIVE')
 
 # Wait for Job to complete or to timeout
@@ -177,7 +194,6 @@ if job.status.status == 'INACTIVE':
     print_message('Job completed successfully')
 else:
     print_message('Error: Job did not complete successfully')
-
 print_message('Job status is ' + job.status.status)
 print_message('----')
 
