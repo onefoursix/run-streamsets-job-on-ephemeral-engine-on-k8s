@@ -49,18 +49,18 @@ This example assumes the use of [WebSocket Tunneling](https://docs.streamsets.co
 
 <img src="images/pipeline.png" alt="pipeline" width="700"/>
 
-- Create but do not start a Kubernetes Deployment to serve as a template.  Make sure the deployment includes the stage libraries necessary to run the pipeline. For example, I'll include the JDBC and Snowflake stage libraries. Typically the number of instances would be set to one, in order to deploy a single engine, and the engine CPU and memory sizing should reflect the need to run only a single pipeline at a time if that is the use of this pattern.
+- Create but do not start a Kubernetes Deployment to serve as a template.  Make sure the deployment includes the stage libraries necessary to run the pipeline, in my case, the JDBC and Snowflake stage libraries. Typically the number of instances should be set to one, in order to deploy a single engine, and the engine CPU and memory sizing should reflect the need to run only a single pipeline at a time if that is the use of this pattern.
 
 In my example, I'll use a Deployment named <code>deployment-template</code>:
 
 <img src="images/deployment-template.png" alt="deployment-template" width="700"/>
 
 
+- Execute the project's top level shell script using a command of the form:
 
-	
-	
+```$ ./run-streamsets-job-on-ephemeral-engine-on-k8s.sh <deployment_to_clone_id> <new_deployment_name> <job_id> <engine_label>"```
 
-- Execute the script passing it the name of a metrics file to be written and the number of lookback minutes:
+
 
 ```
 $ python3 get_streamsets_job_metrics.py /tmp/streamsets_job_metrics.json 60
