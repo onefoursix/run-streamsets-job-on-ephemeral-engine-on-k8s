@@ -31,7 +31,7 @@ This example assumes the use of [WebSocket Tunneling](https://docs.streamsets.co
 
 - A StreamSets [Kubernetes Deployment](https://docs.streamsets.com/portal/platform-controlhub/controlhub/UserGuide/Deployments/Kubernetes.html#concept_ec3_cqg_hvb) that this project will clone at runtime (see below for details).
 
-
+The Python script sets a maximum time for a Job to complete; feel free to change that to fit your environment.
 
 ## Running the Example
 
