@@ -17,7 +17,7 @@ The Python script in this project performs the following steps:
 
 - Tears down the engine and deletes the Deployment.
 
-This example assumes the use of [WebSocket Tunneling](https://docs.streamsets.com/portal/platform-controlhub/controlhub/UserGuide/Engines/Communication.html#concept_hbg_fq3_34b), which simplifies the process of cloning a deployment. If you must use [Direct Engine Rest APIs](https://docs.streamsets.com/portal/platform-controlhub/controlhub/UserGuide/Engines/Communication.html#concept_dt2_hq3_34b) instead, the same "just in time" deployment pattern can be used, but with the added requirement of configuring some form of ingress for the cloned deployment. See the project [here](https://github.com/streamsets/streamsets-sdk-k8s-deployment-with-ingress/blob/main/README.md) for an example of using the StreamSets SDK to automate deploying engines on Kubernetes with Direct Enginen REST APIs.
+This example assumes the use of [WebSocket Tunneling](https://docs.streamsets.com/portal/platform-controlhub/controlhub/UserGuide/Engines/Communication.html#concept_hbg_fq3_34b), which simplifies the process of cloning a deployment. If you must use [Direct Engine Rest APIs](https://docs.streamsets.com/portal/platform-controlhub/controlhub/UserGuide/Engines/Communication.html#concept_dt2_hq3_34b) instead, the same "just in time" deployment pattern can be used, but with the added requirement of configuring ingress for the cloned deployment. See the project [here](https://github.com/streamsets/streamsets-sdk-k8s-deployment-with-ingress/blob/main/README.md) for an example of using the StreamSets SDK to automate deploying engines on Kubernetes with Direct Enginen REST APIs.
 
 
 
@@ -29,7 +29,7 @@ This example assumes the use of [WebSocket Tunneling](https://docs.streamsets.co
 
 - An active StreamSets [Kubernetes Environment](https://docs.streamsets.com/portal/platform-controlhub/controlhub/UserGuide/Environments/Kubernetes.html#concept_l1w_h4g_2vb) with an online Kubernetes Agent. 
 
-- A pre-existing StreamSets [Kubernetes Deployment](https://docs.streamsets.com/portal/platform-controlhub/controlhub/UserGuide/Deployments/Kubernetes.html#concept_ec3_cqg_hvb) that this project will clone at runtime (see below for details).
+- A StreamSets [Kubernetes Deployment](https://docs.streamsets.com/portal/platform-controlhub/controlhub/UserGuide/Deployments/Kubernetes.html#concept_ec3_cqg_hvb) that this project will clone at runtime (see below for details).
 
 
 
@@ -49,7 +49,7 @@ This example assumes the use of [WebSocket Tunneling](https://docs.streamsets.co
 
 <img src="images/pipeline.png" alt="pipeline" width="700"/>
 
-- Create but do not start a Kubernetes Deployment to serve as a template.  Make sure the deployment includes the stage libraries necessary to run the pipeline, in my case, the JDBC and Snowflake stage libraries. Typically the number of instances should be set to one, in order to deploy a single engine, and the engine CPU and memory sizing should reflect the need to run only a single pipeline at a time if that is the use of this pattern.
+- Select an existing or create a new StreamSets Kubernetes Deployment to serve as a template. Make sure the deployment includes the stage libraries necessary to run the pipeline, in my case, the JDBC and Snowflake stage libraries. Typically, deployment's "desired instances" should be set to one, with autoscaling disabled, in order to deploy a single engine, and the engine's CPU and memory sizing should reflect the need to run only a single pipeline at a time for use with this pattern.
 
 In my example, I'll use a Deployment named <code>deployment-template</code>:
 
