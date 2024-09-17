@@ -11,7 +11,7 @@ The script performs the following steps:
 
 - Starts the deployment which causes an engine to be deployed on Kubernetes with the unique label.
 
-- Updates a Job with the unique engine label.
+- Assigns the unique engine label to the Job intended to run on the engine.
 
 - Starts the Job, which will run on the just deployed engine.
 
