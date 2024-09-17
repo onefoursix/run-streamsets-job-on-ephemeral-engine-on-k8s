@@ -62,10 +62,10 @@ In my example, I'll use a Deployment named <code>deployment-template</code>:
 
 For example, I'll specify the ID of my template deployment, the name of the new deployment I want to create ("ephemeral-1"), the Job ID, and a globally unique engine label ("ephemeral-label-1") which will bind the Job to the engine:
 
-<code>$ ./run-streamsets-job-on-ephemeral-engine-on-k8s.sh \
- 19dc63bb-5911-4e9e-b71c-8a6d6e29a9c7:8030c2e9-1a39-11ec-a5fe-97c8d4369386 \
- ephemeral-1 \
- 9caf20bc-dd88-4665-8ef2-10140e7a5417:8030c2e9-1a39-11ec-a5fe-97c8d4369386 \
+<code>$ ./run-streamsets-job-on-ephemeral-engine-on-k8s.sh \\
+ 19dc63bb-5911-4e9e-b71c-8a6d6e29a9c7:8030c2e9-1a39-11ec-a5fe-97c8d4369386 \\
+ ephemeral-1 \\
+ 9caf20bc-dd88-4665-8ef2-10140e7a5417:8030c2e9-1a39-11ec-a5fe-97c8d4369386 \\
  ephemeral-label-1</code>
 
 
