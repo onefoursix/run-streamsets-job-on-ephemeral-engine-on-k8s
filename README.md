@@ -33,7 +33,7 @@ This example assumes the use of [WebSocket Tunneling](https://docs.streamsets.co
 
 
 
-## Deploying the Example
+## Running the Example
 
 
 - Clone this project to your local machine
@@ -45,12 +45,16 @@ This example assumes the use of [WebSocket Tunneling](https://docs.streamsets.co
 	export CRED_TOKEN="eyJ0…………J9."
 	```
 
-	
-- Create but do not start a Kubernetes Deployment to serve as a template.  Typically the number of instances would be set to one, in order to deploy a single engine, and the engine CPU and memory sizing should reflect the need to run only a single pipeline at a time if that is the use of this pattern.
+- Select a Job to run. For example, I'll use a Job that performs a batch load from SQLServer to Snowflake, with a pipeline like this:
+
+<img src="images/pipeline.png" alt="pipeline" width="700"/>
+
+- Create but do not start a Kubernetes Deployment to serve as a template.  Make sure the deployment includes the stage libraries necessary to run the pipeline. For example, I'll include the JDBC and Snowflake stage libraries. Typically the number of instances would be set to one, in order to deploy a single engine, and the engine CPU and memory sizing should reflect the need to run only a single pipeline at a time if that is the use of this pattern.
 
 In my example, I'll use a Deployment named <code>deployment-template</code>:
 
 <img src="images/deployment-template.png" alt="deployment-template" width="700"/>
+
 
 
 	
