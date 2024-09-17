@@ -67,8 +67,4 @@ For example, I'll specify the ID of my template deployment, the name of the new 
 
 
 
-```
-$ python3 get_streamsets_job_metrics.py /tmp/streamsets_job_metrics.json 60
-```
-
 You should see output like this:
