@@ -162,7 +162,7 @@ job.data_collector_labels = [engine_label]
 sch.update_job(job)
 
 # Start the Job
-print_message('Starting the job')
+print_message('Starting the Job')
 sch.start_job(job)
 
 # Wait for Job to transition to Active

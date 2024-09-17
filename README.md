@@ -123,7 +123,7 @@ Here is the command-line output from running the script:
 2024-09-17 11:26:23 Engine is online
 2024-09-17 11:26:23 ----
 2024-09-17 11:26:23 Setting the Job's engine label
-2024-09-17 11:26:23 Starting the job
+2024-09-17 11:26:23 Starting the Job
 2024-09-17 11:26:39 Job status is ACTIVE
 2024-09-17 11:26:39 Waiting for Job to complete...
 2024-09-17 11:26:39 Waiting for Job to complete...
